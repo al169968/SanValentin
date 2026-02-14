@@ -63,16 +63,17 @@
             allHearts.forEach(function (element) {
             element.classList.add("active");
             });
+            // iniciar música al abrir
+            romanticSong.play().catch(err => {
+                console.log("El navegador bloqueó autoplay, pero el click ya habilitó play:", err);
+            });
+
         } catch (error) {
             console.log(error)
         }
         
       }
-      // iniciar música al abrir
-        romanticSong.play().catch(err => {
-            console.log("El navegador bloqueó autoplay, pero el click ya habilitó play:", err);
-        });
-
+      
       function refresh() {
         heart.classList.remove("active");
         reload.setAttribute("style","opacity: 0; pointer-events: none;");
