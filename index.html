@@ -51,6 +51,7 @@
           hearts = document.querySelector(".hearts"),
           allHearts = document.querySelectorAll(".hearts div"),
           heartAnime = document.querySelector(".heart.anime");
+        const romanticSong = document.getElementById('romanticSong');
 
       heart.addEventListener("click", animation);
       reload.addEventListener("click", refresh);
@@ -63,10 +64,13 @@
             allHearts.forEach(function (element) {
             element.classList.add("active");
             });
-            // iniciar música al abrir
-            romanticSong.play().catch(err => {
-                console.log("El navegador bloqueó autoplay, pero el click ya habilitó play:", err);
+            romanticSong.currentTime = 0; // reinicia desde el inicio
+            romanticSong.play().then(() => {
+                console.log("La música comenzó correctamente.");
+            }).catch(err => {
+                console.log("El navegador bloqueó autoplay:", err);
             });
+
 
         } catch (error) {
             console.log(error)
