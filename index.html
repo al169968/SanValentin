@@ -34,9 +34,9 @@
             <img src="Love.jpg" alt="Foto romántica" class="photo" style="max-width: 250px;max-height: 350px;">
             <p>Eres mi San Valentín, siempre ❤️</p>
             <!-- Música romántica -->
-            <audio id="romanticSong" autoplay loop controls hidden>
+            <audio id="romanticSong" autoplay loop controls>
             <source src="lovesong.mp3" type="audio/mpeg">
-            Tu navegador no soporta audio.
+            
             </audio>
             <!-- Contenedor de corazones -->
             <div id="heartsContainer"></div>
@@ -55,12 +55,17 @@
       reload.addEventListener("click", refresh);
 
       function animation() {
-        heart.classList.add("active");
-        reload.setAttribute("style","opacity: 1; cursor: pointer; pointer-events: auto;");
-        heartAnime.style.opacity = "0";
-        allHearts.forEach(function (element) {
-          element.classList.add("active");
-        });
+        try {
+            heart.classList.add("active");
+            reload.setAttribute("style","opacity: 1; cursor: pointer; pointer-events: auto;");
+            heartAnime.style.opacity = "0";
+            allHearts.forEach(function (element) {
+            element.classList.add("active");
+            });
+        } catch (error) {
+            console.log(error)
+        }
+        
       }
 
       function refresh() {
