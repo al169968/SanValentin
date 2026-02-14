@@ -1,0 +1,404 @@
+@import url("https://fonts.googleapis.com/css?family=Gaegu");
+
+body {
+   background-color: #fff0f5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Gaegu", cursive;
+  overflow: hidden;
+}
+
+/* Botón reload */
+.reload {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  color: #4bb58c;
+  transition: all 0.5s 0.5s ease;
+  width: auto;
+  height: auto;
+  opacity: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reload:hover {
+  color: white;
+  top: 5px;
+}
+.reload:after {
+  background-color: #ef6c57;
+  content: "";
+  width: 0;
+  height: 2px;
+  opacity: 1;
+  border-radius: 30px;
+  position: absolute;
+  bottom: -4px;
+  z-index: -1;
+  transition: width 0.5s 0.5s ease, height 0.5s 0s ease;
+}
+.reload:hover:after {
+  transition: width 0.5s 0s ease, height 0.5s 0.5s ease;
+  width: calc(100% + 30px);
+  height: calc(100% + 10px);
+}
+
+/* Contenedor */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Corazón principal */
+.heart {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s 0.2s ease;
+  opacity: 1;
+}
+.heart:hover {
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+}
+.heart.anime {
+  animation: heartbeat 0.8s 0.2s ease infinite alternate;
+  position: absolute;
+  cursor: auto;
+}
+@keyframes heartbeat {
+  0% {
+    width: 120px;
+    height: 120px;
+  }
+  100% {
+    width: 140px;
+    height: 140px;
+  }
+}
+.heart:before,
+.heart:after {
+  position: absolute;
+  background-color: #ef6c57;
+  content: "";
+  width: 50%;
+  height: 75%;
+}
+.heart:before {
+  transform: rotate(-45deg);
+  border-radius: 400px 400px 0px 100px;
+  left: 16%;
+}
+.heart:after {
+  transform: rotate(45deg);
+  border-radius: 400px 400px 100px 0px;
+  right: 16%;
+}
+.heart.active {
+  width: 500px;
+  height: 500px;
+  animation: none !important;
+  transition: all 1s 0.2s ease;
+  cursor: auto;
+  position: absolute;
+}
+.heart:hover.active {
+  width: 500px;
+  height: 500px;
+}
+
+/* Texto dentro del corazón */
+.heart .title {
+  opacity: 1;
+  color: #f2f2f2;
+  position: absolute;
+  transition: all 0.8s 0.5s ease;
+  z-index: 1;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: -3%;
+  animation: title 3s 1s ease infinite;
+}
+@keyframes title {
+  0%,25%,100% { transform: rotate(0deg); }
+  5%,15% { transform: rotate(5deg); }
+  10%,20% { transform: rotate(-5deg); }
+}
+.heart.active .title {
+  opacity: 0;
+  transition: all 0.8s 0s ease;
+}
+.heart .message {
+  opacity: 0;
+  color: #f2f2f2;
+  transition: all 0.2s 0s ease;
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  margin-top: -20%;
+  font-size: 16px;
+  z-index: 1;
+}
+.heart.active .message {
+  opacity: 1;
+  z-index: 1;
+  margin-top: -10%;
+  transition: all 1s 0.5s ease;
+}
+
+/* Corazones flotantes */
+.hearts {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+.heart2,
+.heart3,
+.heart4 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  transition: all 1s ease;
+}
+.heart2.active {
+  opacity: 1;
+  animation: floatHearts1 2s 0.2s ease;
+}
+.heart3.active {
+  opacity: 1;
+  animation: floatHearts2 2s 0.2s ease;
+}
+.heart4.active {
+  opacity: 1;
+  animation: floatHearts3 2s 0.2s ease;
+}
+@keyframes floatHearts1 {
+  0% { width:20px; height:20px; left:50%; top:60%; transform:rotate(0deg); }
+  50% { top:30%; }
+  100% { width:50px; height:50px; left:-20%; top:20%; transform:rotate(-40deg); }
+}
+@keyframes floatHearts2 {
+  0% { width:20px; height:20px; right:50%; top:60%; transform:rotate(0deg); }
+  100% { width:100px; height:100px; right:0%; top:-20%; transform:rotate(40deg); }
+}
+@keyframes floatHearts3 {
+  0% { width:20px; height:20px; right:50%; top:50%; transform:rotate(0deg); }
+  50% { top:100%; }
+  100% { width:80px; height:80px; right:0%; top:110%; transform:rotate(90deg); }
+}
+.heart2:before,
+.heart2:after,
+.heart3:before,
+.heart3:after,
+.heart4:before,
+.heart4:after {
+  position: absolute;
+  background-color: #ef6c57;
+  content: "";
+  width: 50%;
+  height: 90%;
+  z-index: 2;
+}
+.heart2:before,
+.heart3:before,
+.heart4:before {
+  transform: rotate(-45deg);
+  border-radius: 400px 400px 0px 100px;
+  left: 10%;
+}
+.heart2:after,
+.heart3:after,
+.heart4:after {
+  transform: rotate(45deg);
+  border-radius: 400px 400px 100px 0px;
+  right: 10%;
+}
+.heart-shape {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: floatUp 3s forwards;
+}
+.heart-shape::before,
+.heart-shape::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.heart-shape::before { top: -10px; left: 0; }
+.heart-shape::after { left: 10px; top: 0; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+  100% { transform: translateY(-200px) rotate(-45deg); opacity:0; }
+}
+/* Modal */
+.modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+  overflow:hidden;
+}
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
+.photo {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Botón */
+.btn-yes {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn-yes:hover { background: #c62828; }
+
+/* Corazones animados */
+.heart-shape {
+  position: absolute;
+  width: 20px; height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: floatUp 3s forwards;
+}
+.heart-shape::before,
+.heart-shape::after {
+  content:"";
+  position:absolute;
+  width:20px; height:20px;
+  background:red;
+  border-radius:50%;
+}
+.heart-shape::before { top:-10px; left:0; }
+.heart-shape::after { left:10px; top:0; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+  100% { transform: translateY(-250px) rotate(-45deg); opacity:0; }
+}
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  overflow:hidden;
+}
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
+.photo {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Botón */
+.btn-yes {
+  background: #e63946;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn-yes:hover { background: #c62828; }
+
+/* Corazones animados */
+.heart-shape {
+  position: absolute;
+  width: 20px; height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: floatUp 3s forwards;
+}
+.heart-shape::before,
+.heart-shape::after {
+  content:"";
+  position:absolute;
+  width:20px; height:20px;
+  background:red;
+  border-radius:50%;
+}
+.heart-shape::before { top:-10px; left:0; }
+.heart-shape::after { left:10px; top:0; }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+  100% { transform: translateY(-250px) rotate(-45deg); opacity:0; }
+}
+
+/* Responsivo */
+@media (max-width: 576px) {
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+  .close { font-size: 24px; }
+  .btn-yes { font-size: 0.9rem; padding: 8px 16px; }
+}
