@@ -12,6 +12,11 @@
   <body>
     <p class="reload">reload</p>
     <div class="content">
+        <!-- Música romántica -->
+        <audio id="romanticSong" autoplay loop controls hidden>
+        <source src="lovesong.mp3" type="audio/mpeg">
+        
+        </audio>
       <div class="heart">
         <p class="title">Oprime aquí</p>
         <!-- Botón dentro del mensaje -->
@@ -33,11 +38,7 @@
             <h2>¡Gracias, mi amor!</h2>
             <img src="Love.jpg" alt="Foto romántica" class="photo" style="max-width: 250px;max-height: 350px;">
             <p>Eres mi San Valentín, siempre ❤️</p>
-            <!-- Música romántica -->
-            <audio id="romanticSong" autoplay loop controls>
-            <source src="lovesong.mp3" type="audio/mpeg">
             
-            </audio>
             <!-- Contenedor de corazones -->
             <div id="heartsContainer"></div>
         </div>
@@ -67,6 +68,10 @@
         }
         
       }
+      // iniciar música al abrir
+        romanticSong.play().catch(err => {
+            console.log("El navegador bloqueó autoplay, pero el click ya habilitó play:", err);
+        });
 
       function refresh() {
         heart.classList.remove("active");
