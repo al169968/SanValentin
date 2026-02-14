@@ -13,7 +13,7 @@
     <p class="reload">reload</p>
     <div class="content">
         <!-- Música romántica -->
-        <audio id="romanticSong" autoplay loop controls hidden>
+        <audio id="romanticSong" loop controls hidden>
         <source src="lovesong.mp3" type="audio/mpeg">
         
         </audio>
@@ -64,12 +64,7 @@
             allHearts.forEach(function (element) {
             element.classList.add("active");
             });
-            romanticSong.currentTime = 0; // reinicia desde el inicio
-            romanticSong.play().then(() => {
-                console.log("La música comenzó correctamente.");
-            }).catch(err => {
-                console.log("El navegador bloqueó autoplay:", err);
-            });
+           
 
 
         } catch (error) {
@@ -95,15 +90,27 @@
       let interval;
 
       btnYes.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        interval = setInterval(() => {
-          const heart = document.createElement('div');
-          heart.className = 'heart-shape';
-          heart.style.left = Math.random()*90 + '%';
-          heart.style.top = '90%';
-          heartsContainer.appendChild(heart);
-          setTimeout(() => heart.remove(), 3000);
-        }, 300);
+        try {
+            modal.style.display = 'flex';
+            romanticSong.currentTime = 0; // reinicia desde el inicio
+            romanticSong.play().then(() => {
+                console.log("La música comenzó correctamente.");
+            }).catch(err => {
+                console.log("El navegador bloqueó autoplay:", err);
+            });
+
+            interval = setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-shape';
+            heart.style.left = Math.random()*90 + '%';
+            heart.style.top = '90%';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+            }, 300);
+        } catch (error) {
+            console.log(error)
+        }
+        
       });
 
       closeModal.addEventListener('click', () => {
